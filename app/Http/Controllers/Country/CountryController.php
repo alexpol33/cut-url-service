@@ -27,5 +27,9 @@ class CountryController extends Controller
         return response()->json($country, 201);
     }
 
-
+    public function countryDelete($id){
+        $country = CountryModel::find($id);
+        $country->delete();
+        return response()->json(null, 204);
+    }
 }
