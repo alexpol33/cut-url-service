@@ -23,3 +23,5 @@ Route::get('country/{id}', 'Country\CountryController@countryById');
 
 Route::post('country', 'Country\CountryController@countryAdd');
 
+Route::put('country/{country}', 'Country\CountryController@countryEdit');
+
