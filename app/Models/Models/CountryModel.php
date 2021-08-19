@@ -17,4 +17,6 @@ class CountryModel extends Model
         'name_en',
 
     ];
+
+
 }
