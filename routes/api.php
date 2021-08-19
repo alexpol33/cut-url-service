@@ -20,3 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('country', 'Country\CountryController@country');
 Route::get('country/{id}', 'Country\CountryController@countryById');
+
+Route::post('country', 'Country\CountryController@countryAdd');
+
