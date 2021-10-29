@@ -5,7 +5,10 @@ $db = new PDO("mysql:host=" . DB_HOST . "; dbname=" . DB_NAME . "; charset=utf8"
         PDO::ATTR_EMULATE_PREPARES => false,
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-])
+]);
+
+$users = $db->query("SELECT COUNT(id) FROM `users`");
+$users_count = $users->fetchColumn();
 ?>
 <!doctype html>
 <html lang="ru">
