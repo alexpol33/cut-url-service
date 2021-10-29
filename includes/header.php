@@ -1,20 +1,12 @@
 <?php
 include 'includes/functions.php';
 
-$db = new PDO("mysql:host=" . DB_HOST . "; dbname=" . DB_NAME . "; charset=utf8", DB_USER, DB_PASS, [
-        PDO::ATTR_EMULATE_PREPARES => false,
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-]);
 
-$statement = $db->query("SELECT COUNT(id) FROM `users`");
-$users_count = $statement->fetchColumn();
+$users_count = db_query("SELECT COUNT(id) FROM `users`")->fetchColumn();
 
-$statement = $db->query("SELECT COUNT(id) FROM `links`");
-$links_count = $statement->fetchColumn();
+$links_count = db_query("SELECT COUNT(id) FROM `links`")->fetchColumn();
 
-$statement = $db->query("SELECT SUM(views) FROM `links`");
-$links_views = $statement->fetchColumn()
+$links_views = db_query("SELECT SUM(views) FROM `links`")->fetchColumn();
 
 ?>
 <!doctype html>
