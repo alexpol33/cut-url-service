@@ -1,19 +1,20 @@
-<?php include 'includes/header.php'; ?>
 <?php
+include 'includes/functions.php';
 if(isset($_GET['url']) && !empty($_GET['url'])) {
-    $url =  strtolower(trim($_GET['url']));
+    $url = strtolower(trim($_GET['url']));
 
     $link = db_query("SELECT * FROM links WHERE short_link = '$url'")->fetch();
-    if(empty($link)){
+    if (empty($link)) {
         echo "Такая ссылка не найдена";
         die();
     }
 
-
-}else{
-
+    db_exec("UPDATE links SET views = views + 1 WHERE short_link = '$url'");
+    header('Location: ' . $link['long_link']);
+    exit();
 }
 ?>
+<?php include 'includes/header.php'; ?>
 	<main class="container">
 		<div class="row mt-5">
 			<div class="col">
