@@ -12,7 +12,7 @@
 		</div>
 		<div class="row mt-5">
 			<div class="col">
-				<h2 class="text-center">Ссылок в системе: 200</h2>
+				<h2 class="text-center">Ссылок в системе: <?php echo $links_count?></h2>
 			</div>
 		</div>
 		<div class="row mt-5">
