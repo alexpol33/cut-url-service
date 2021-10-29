@@ -5,7 +5,7 @@ if(isset($_GET['url']) && !empty($_GET['url'])) {
 
     $link = db_query("SELECT * FROM links WHERE short_link = '$url'")->fetch();
     if (empty($link)) {
-        echo "Такая ссылка не найдена";
+        include '404.html';
         die();
     }
 
