@@ -17,7 +17,7 @@
 		</div>
 		<div class="row mt-5">
 			<div class="col">
-				<h2 class="text-center">Всего переходов по ссылкам: 300</h2>
+				<h2 class="text-center">Всего переходов по ссылкам: <?php echo $links_views?></h2>
 			</div>
 		</div>
 	</main>
