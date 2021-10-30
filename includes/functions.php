@@ -32,7 +32,7 @@ function db_exec($sql = ''){
 function get_user_info($login){
     if (empty($login)) return [];
 
-    return db_query("SELECT * FROM users WHERE login = '$login'");
+    return db_query("SELECT * FROM users WHERE login = '$login'")->fetch();
 }
 
 function register_user($data){
