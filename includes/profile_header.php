@@ -10,7 +10,11 @@ if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
     $_SESSION['success'] = '';
 }
 
+$links = get_user_links($_SESSION['user_id']);
 
+if (isset($_POST['link']) && !empty($_POST['link'])){
+    register_link($_SESSION['user_id'], $_POST);
+}
 ?>
 <!doctype html>
 <html lang="ru">
@@ -40,8 +44,8 @@ if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
                         <a class="nav-link active" href="<?php echo get_url('profile.php'); ?>">Профиль</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="text" placeholder="Ссылка" aria-label="Ссылка">
+                <form action="" method="post" class="d-flex">
+                    <input class="form-control me-2" name="link" type="text" placeholder="Ссылка" aria-label="Ссылка">
                     <button class="btn btn-success" type="submit"><i class="bi bi-plus-lg"></i></button>
                 </form>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

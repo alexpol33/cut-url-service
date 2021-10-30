@@ -95,3 +95,26 @@ function login($data){
 
 
 }
+
+function get_user_links($id){
+    if(isset($id) && !empty($id)){
+       return db_query("SELECT * FROM `links` WHERE user_id = '$id'")->fetchAll();
+    }
+}
+
+function random_link($length = 8){
+    $chars = 'abcdefghijklmnopqrstuvwxyz';
+    $numChars = strlen($chars);
+    $string = '';
+    for ($i = 0; $i < $length; $i++) {
+        $string .= substr($chars, rand(1, $numChars) - 1, 1);
+    }
+    return $string;
+}
+
+function register_link($user_id, $data){
+    $long_link = $data['link'];
+    $short_link = random_link();
+    db_exec("INSERT INTO `links` (`id`, `user_id`, `long_link`, `short_link`, `views`) VALUES (NULL, '$user_id', '$long_link', '$short_link', '0')");
+    header("Location: " . get_url('profile.php'));
+}
