@@ -5,7 +5,6 @@ $users_count = db_query("SELECT COUNT(id) FROM `users`")->fetchColumn();
 $links_count = db_query("SELECT COUNT(id) FROM `links`")->fetchColumn();
 
 $links_views = db_query("SELECT SUM(views) FROM `links`")->fetchColumn();
-var_dump($_SESSION);
 ?>
 <!doctype html>
 <html lang="ru">
@@ -30,10 +29,13 @@ var_dump($_SESSION);
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?php echo get_url(); ?>">Главная</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="<?php echo get_url('profile.php'); ?>">Профиль</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <?php if (true){ ?>
+                        <?php if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])){ ?>
                         <a href="<?php echo get_url('login.php'); ?>" class="btn btn-primary">Войти</a>
                         <?php } else { ?>
                             <a href = "<?php echo get_url('includes/logout.php')?>" class="btn btn-primary" > Выйти</a >

@@ -32,10 +32,10 @@ if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.html">Главная</a>
+                        <a class="nav-link" aria-current="page" href="<?php echo get_url(); ?>">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="profile.php">Профиль</a>
+                        <a class="nav-link active" href="<?php echo get_url('profile.php'); ?>">Профиль</a>
                     </li>
                 </ul>
                 <form class="d-flex">
