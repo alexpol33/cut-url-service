@@ -67,3 +67,27 @@ function register_user($data){
 
     return true;
 }
+
+function login($data){
+    if (empty($data) || !isset($data['login']) || empty($data['login']) || !isset($data['pass']) ||empty($data['pass'])) {
+        $_SESSION['error'] = "Логин или пароль не могут быть пустыми";
+        header('Location: login.php');
+        die();
+    }
+
+    $user = get_user_info($data['login']);
+
+    if(empty($user)){
+        $_SESSION['error'] = "Логин или авпроль неверен";
+        header('Location: login.php');
+        die();
+    }
+
+    if(password_verify($data['pass'], $user['pass'])){
+        $_SESSION['user_id'] = $user['id'];
+        header('Location: profile.php');
+        die();
+    }
+
+
+}
