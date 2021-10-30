@@ -1,6 +1,5 @@
 <?php
 
-
 $users_count = db_query("SELECT COUNT(id) FROM `users`")->fetchColumn();
 
 $links_count = db_query("SELECT COUNT(id) FROM `links`")->fetchColumn();

@@ -28,3 +28,24 @@ function db_exec($sql = ''){
 
     return db()->exec($sql);
 }
+
+function get_user_info($login){
+    if (empty($login)) return [];
+
+    return db_query("SELECT * FROM users WHERE login = '$login'");
+}
+
+function register_user($data){
+    if (empty($data) || !isset($data['login']) || empty($data['login']) || empty($data['pass']) || empty($data['pass2'])) return false;
+
+    $user = get_user_info($data['login']);
+
+    if(!empty($user)){
+        $_SESSION['error'] = "Пользователь " . $data['login'] . " уже существует";
+        header('Location: register.php');
+        die();
+    }
+
+
+    return true;
+}
