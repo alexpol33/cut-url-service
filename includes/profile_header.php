@@ -1,3 +1,15 @@
+<?php include 'includes/functions.php';
+$error = '';
+if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
+    $error = $_SESSION['error'];
+    $_SESSION['error'] = '';
+}
+$success = '';
+if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
+    $error = $_SESSION['success'];
+    $_SESSION['success'] = '';
+}
+?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -32,7 +44,7 @@
                 </form>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a href="login.php" class="btn btn-primary">Выйти</a>
+                        <a href="<?php echo get_url('includes/logout.php')?>" class="btn btn-primary">Выйти</a>
                     </li>
                 </ul>
             </div>

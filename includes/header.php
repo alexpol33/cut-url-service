@@ -1,11 +1,11 @@
 <?php
-
+include_once 'includes/functions.php';
 $users_count = db_query("SELECT COUNT(id) FROM `users`")->fetchColumn();
 
 $links_count = db_query("SELECT COUNT(id) FROM `links`")->fetchColumn();
 
 $links_views = db_query("SELECT SUM(views) FROM `links`")->fetchColumn();
-
+var_dump($_SESSION);
 ?>
 <!doctype html>
 <html lang="ru">
@@ -33,7 +33,11 @@ $links_views = db_query("SELECT SUM(views) FROM `links`")->fetchColumn();
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
+                        <?php if (true){ ?>
                         <a href="<?php echo get_url('login.php'); ?>" class="btn btn-primary">Войти</a>
+                        <?php } else { ?>
+                            <a href = "<?php echo get_url('includes/logout.php')?>" class="btn btn-primary" > Выйти</a >
+                        <?php }?>
                     </li>
                 </ul>
             </div>

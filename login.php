@@ -1,4 +1,5 @@
 <?php
+include 'includes/functions.php';
 $error = '';
 if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
     $error = $_SESSION['error'];
@@ -8,6 +9,9 @@ $success = '';
 if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
     $error = $_SESSION['success'];
     $_SESSION['success'] = '';
+}
+if (isset($_POST['login']) && !empty($_POST['login'])){
+    login($_POST);
 }
 include 'includes/header.php'; ?>
 	<main class="container">
