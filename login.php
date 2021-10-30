@@ -38,11 +38,11 @@ include 'includes/header.php'; ?>
 				<form action="" method="post">
 					<div class="mb-3">
 						<label for="login-input" class="form-label">Логин</label>
-						<input type="text" name="login" class="form-control is-valid" id="login-input" required>
+						<input type="text" name="login" class="form-control" id="login-input" required>
 					</div>
 					<div class="mb-3">
 						<label for="password-input" class="form-label">Пароль</label>
-						<input type="password" name="pass" class="form-control is-invalid" id="password-input" required>
+						<input type="password" name="pass" class="form-control" id="password-input" required>
 					</div>
 					<button type="submit" class="btn btn-primary">Войти</button>
 				</form>

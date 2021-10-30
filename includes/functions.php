@@ -78,7 +78,7 @@ function login($data){
     $user = get_user_info($data['login']);
 
     if(empty($user)){
-        $_SESSION['error'] = "Логин или авпроль неверен";
+        $_SESSION['error'] = "Логин или пароль неверен";
         header('Location: login.php');
         die();
     }
@@ -86,6 +86,10 @@ function login($data){
     if(password_verify($data['pass'], $user['pass'])){
         $_SESSION['user_id'] = $user['id'];
         header('Location: profile.php');
+        die();
+    }else{
+        $_SESSION['error'] = "Логин или пароль неверен";
+        header('Location: login.php');
         die();
     }
 

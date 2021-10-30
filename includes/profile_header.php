@@ -9,6 +9,8 @@ if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
     $error = $_SESSION['success'];
     $_SESSION['success'] = '';
 }
+
+
 ?>
 <!doctype html>
 <html lang="ru">
