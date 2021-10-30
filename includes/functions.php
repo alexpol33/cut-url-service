@@ -35,6 +35,12 @@ function get_user_info($login){
     return db_query("SELECT * FROM users WHERE login = '$login'")->fetch();
 }
 
+function add_user($login, $pass){
+    $pass = password_hash($pass, PASSWORD_DEFAULT);
+
+    return db_exec("INSERT INTO `users` (`id`, `login`, `pass`) VALUES (NULL, '$login', '$pass')");
+}
+
 function register_user($data){
     if (empty($data) || !isset($data['login']) || empty($data['login']) || empty($data['pass']) || empty($data['pass2'])) return false;
 
@@ -43,6 +49,18 @@ function register_user($data){
     if(!empty($user)){
         $_SESSION['error'] = "Пользователь " . $data['login'] . " уже существует";
         header('Location: register.php');
+        die();
+    }
+
+    if($data['pass'] !== $data['pass2']){
+        $_SESSION['error'] = "Пароли не совпадают";
+        header('Location: register.php');
+        die();
+    }
+
+    if(add_user($data['login'], $data['pass'])){
+        $_SESSION['success'] = "Регистрация прошла успешно";
+        header('Location: login.php');
         die();
     }
 

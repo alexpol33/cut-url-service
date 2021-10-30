@@ -1,22 +1,29 @@
 <?php include 'includes/functions.php';
-if (isset($_POST['login']) && !empty($_POST['login'])){
-    register_user($_POST);
-}
 
 $error = '';
 if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
     $error = $_SESSION['error'];
     $_SESSION['error'] = '';
 }
+$success = '';
+if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
+    $error = $_SESSION['success'];
+    $_SESSION['success'] = '';
+}
+if (isset($_POST['login']) && !empty($_POST['login'])){
+    register_user($_POST);
+}
 
 include 'includes/header.php';
 ?>
 
 	<main class="container">
-<!--		<div class="alert alert-success alert-dismissible fade show mt-3" role="alert">-->
-<!--			Все ок-->
-<!--			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
-<!--		</div>-->
+        <?php if(!empty($success)){ ?>
+            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                <?php echo $success?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php }?>
         <?php if(!empty($error)){ ?>
 		<div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
             <?php echo $error?>
