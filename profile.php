@@ -1,4 +1,12 @@
-<?php include 'includes/profile_header.php'; ?>
+<?php
+include 'includes/functions.php';
+
+if (isset($_POST['post_id']) && !empty($_POST['post_id'])){
+    delete_link($_POST['post_id']);
+}
+
+include 'includes/profile_header.php';
+?>
 <main class="container">
     <?php if(!empty($success)){ ?>
         <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
@@ -24,16 +32,18 @@
 					</tr>
 				</thead>
 				<tbody>
-                <?php $i = 1; foreach ($links as $link){ ?>
+                <?php $i = 1; foreach ($links as $link){ $id = $link['id'] ?>
 					<tr>
 						<th scope="row"><?php echo $i?></th>
 						<td><a href="<?php echo $link['long_link']?>" target="_blank"><?php echo $link['long_link']?></a></td>
 						<td class="short-link"><?php echo HOST . '/' . $link['short_link']?></td>
 						<td><?php echo $link['views']?></td>
 						<td>
-							<a href="#" class="btn btn-primary btn-sm copy-btn" title="Скопировать в буфер" data-clipboard-text="http://red.loc/kjjfdh"><i class="bi bi-files"></i></a>
-							<a href="#" class="btn btn-warning btn-sm" title="Редактировать"><i class="bi bi-pencil"></i></a>
-							<a href="#" class="btn btn-danger btn-sm" title="Удалить"><i class="bi bi-trash"></i></a>
+                            <form action="" method="post">
+                                <input name="post_id" value="<?php echo $id?>" class="d-none">
+                                <a href="#" class="btn btn-primary btn-sm copy-btn" title="Скопировать в буфер" data-clipboard-text="<?php echo HOST . '/' . $link['short_link']?>"><i class="bi bi-files"></i></a>
+							    <button type="submit" class="btn btn-danger btn-sm" title="Удалить"><i class="bi bi-trash"></i></button>
+                            </form>
 						</td>
 					</tr>
                 <?php $i++; } ?>

@@ -1,4 +1,4 @@
-<?php include 'includes/functions.php';
+<?php include_once 'includes/functions.php';
 $error = '';
 if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
     $error = $_SESSION['error'];

@@ -3,16 +3,20 @@ include 'includes/functions.php';
 if(isset($_GET['url']) && !empty($_GET['url'])) {
     $url = strtolower(trim($_GET['url']));
 
+
     $link = db_query("SELECT * FROM links WHERE short_link = '$url'")->fetch();
     if (empty($link)) {
-        include '404.html';
+        include '404.php';
         die();
     }
 
     db_exec("UPDATE links SET views = views + 1 WHERE short_link = '$url'");
     header('Location: ' . $link['long_link']);
     exit();
+
 }
+
+
 ?>
 <?php include 'includes/header.php'; ?>
 	<main class="container">

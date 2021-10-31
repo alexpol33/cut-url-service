@@ -118,3 +118,9 @@ function register_link($user_id, $data){
     db_exec("INSERT INTO `links` (`id`, `user_id`, `long_link`, `short_link`, `views`) VALUES (NULL, '$user_id', '$long_link', '$short_link', '0')");
     header("Location: " . get_url('profile.php'));
 }
+
+function delete_link($id){
+    db_exec("DELETE FROM `links` WHERE `links`.`id` = '$id'");
+    header("Refresh:0");
+}
+
